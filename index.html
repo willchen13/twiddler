@@ -7,21 +7,101 @@
   <body>
     <script>
 
+      //users timelines
+      //@mracus
+      //@shawndrost
+      //@sharksforcheap
+      //@douglascalhoun
+
+
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var timeStamp=tweet.created_at;
+          var $tweet = $('<div class="tweet"></div>');
+          var $message= $('<h4 class="message"></h4>');
+          var $timeStamp=$('<p class="time"></p>');
+          $message.html('@' +`<a href='users/${tweet.user}.html'> ${tweet.user} </a> `+ ': ' + tweet.message);
+
+          $timeStamp.text(timeStamp);
+          $tweet.append($message,$timeStamp);
+          $tweet.appendTo('.main-body');
           index -= 1;
         }
+        //updates page
+      var refresh=function(){
+        for(var i=$('.tweet').length;i<streams.home.length;i++){
+          var tweet=streams.home[i];
+          var timeStamp=tweet.created_at;
+          var $tweet=$('<div class="tweet"></div>');
+          var $message=$('<h4 class="message"></h4');
+          var $timeStamp=$('<p class="time"></p>');
+          $message.html('@' +`<a href='users/${tweet.user}.html'> ${tweet.user} </a> `+ ': ' + tweet.message);
+          $timeStamp.text(timeStamp);
+          $tweet.append($message,$timeStamp);
+          $('.main-body').prepend($tweet);
+          $('.tweet').css({
+          'background-color':'white',
+          'color':'light-blue',
+          'border-radius':'10px',
+          'padding': '5px',
+          'margin': '10px',
+          'border':'1px solid black',
+          'display':'inline-block',
+          'width':'50%',
+        });
+        }
+      }
+      $('.tweet').css({
+          'background-color':'white',
+          'color':'light-blue',
+          'border-radius':'10px',
+          'padding': '5px',
+          'margin': '10px',
+          'border':'1px solid black',
+          'display':'inline-block',
+          'width':'50%',
+        });
+
+
+      // // //update button
+
+      $('.refresh').on('click',function(){
+        refresh();
+      });
+
+
+       //style
+       $('.main-body').css({
+          'background-color':'#14202a',
+          'border':'1px solid black',
+          'overflow':'scroll'
+        });
 
       });
 
+
+
     </script>
+     <section class='twiddler-head'>
+
+        <img class='img1' src="twitterlogo.webp" width='50px' length='50px'></img>
+
+        <h2 class="twiddler-heading">
+          Will's Twiddler Page
+        </h2>
+
+        <button class='refresh'>
+          Refresh
+        </button>
+
+      </section>
+
+      <section class='main-body'>
+
+      </section>
   </body>
 </html>

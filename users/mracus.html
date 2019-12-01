@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <script src="/Users/willchen/Desktop/hrsf125/hrsf125-twiddler/jquery.js"></script>
+      <script src="/Users/willchen/Desktop/hrsf125/hrsf125-twiddler/data_generator.js"></script>
+
+  </head>
+
+  <body>
+    <script>
+      $(document).ready(function(){
+        for(var i=0;i<=streams.users.mracus.length;i++){
+          var tweet=streams.users.mracus[i];
+          var timeStamp=streams.users.mracus[i].created_at;
+          var $tweet = $('<div class="tweet"></div>');
+          var $message = $('<h3 class="message"></h3>');
+          var $timeStamp = $('<p class="time"></p>');
+          $message.text(tweet.message);
+          $timeStamp.text(timeStamp);
+          $tweet.append($message, $timeStamp);
+          $tweet.appendTo($('.main-body'));
+        }
+      })
+
+
+
+       //style
+       $('.tweet').css({
+          'background-color':'white',
+          'color':'light-blue',
+          'border-radius':'10px',
+          'padding': '5px',
+          'margin': '10px',
+          'border':'1px solid black',
+          'display':'inline-block',
+          'width':'50%',
+        });
+
+       $('.main-body').css({
+          'background-color':'#14202a',
+          'border':'1px solid black',
+          'overflow':'scroll'
+        });
+
+
+
+    </script>
+
+<section class='twiddler-head'>
+
+   <img class='img1' src="../twitterlogo.webp" width='50px' length='50px'></img>
+
+   <h2 class="twiddler-heading">
+     @mracus
+   </h2>
+
+   <a href="/Users/willchen/Desktop/hrsf125/hrsf125-twiddler/index.html"> Return Home</a>
+
+
+ </section>
+
+ <section class='main-body'>
+
+ </section>
+</body>
+</html>
